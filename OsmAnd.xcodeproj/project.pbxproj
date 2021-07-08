@@ -2337,6 +2337,7 @@
 		B0D6143A4EEB3410F47A53B8 /* OADeleteCustomFiltersViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0D611965D0A6A725E8CBDB1 /* OADeleteCustomFiltersViewController.mm */; };
 		B0D615DA8EFE25BED37A3A48 /* OAIPFSImageCard.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0D6106E3EA05F5A91596E3F /* OAIPFSImageCard.mm */; };
 		B0D6167C4FD3ECD7736A0EAD /* OAGpxWptEditingHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0D6189EC7D66546D536A0E6 /* OAGpxWptEditingHandler.mm */; };
+		B0D617D7EC855E1492984383 /* OAWikipediaPlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0D6116D8E98444E86892434 /* OAWikipediaPlugin.mm */; };
 		B0D619F2CDE86225BEBC83FB /* OARearrangeCustomFiltersViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0D61C17B82A2A45EA763869 /* OARearrangeCustomFiltersViewController.mm */; };
 		B0D61A1252D305F9C6ABAF61 /* OATitleSliderRoundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0D61A71FCB50975CB4FB88D /* OATitleSliderRoundCell.m */; };
 		B0D61BE10DA62CC3244272FE /* OAButtonRightIconCell.mm in Sources */ = {isa = PBXBuildFile; fileRef = B0D61D3FD9AA71B8466C76BC /* OAButtonRightIconCell.mm */; };
@@ -6620,6 +6621,7 @@
 		B0D6106E3EA05F5A91596E3F /* OAIPFSImageCard.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OAIPFSImageCard.mm; sourceTree = "<group>"; };
 		B0D6110893459B1D4D26BC18 /* OARearrangeCustomFiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OARearrangeCustomFiltersViewController.h; path = Sources/Controllers/2.0/OARearrangeCustomFiltersViewController.h; sourceTree = "<group>"; };
 		B0D6115DA512EEFB8779E3C2 /* OAHistoryMarkersSettingsItem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OAHistoryMarkersSettingsItem.mm; sourceTree = "<group>"; };
+		B0D6116D8E98444E86892434 /* OAWikipediaPlugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OAWikipediaPlugin.mm; sourceTree = "<group>"; };
 		B0D6118298660C49762B711A /* OASnapTrackWarningViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OASnapTrackWarningViewController.mm; sourceTree = "<group>"; };
 		B0D611965D0A6A725E8CBDB1 /* OADeleteCustomFiltersViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OADeleteCustomFiltersViewController.mm; path = Sources/Controllers/2.0/OADeleteCustomFiltersViewController.mm; sourceTree = "<group>"; };
 		B0D6124426F5AEF23E56EC2E /* OAIPFSImageCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAIPFSImageCard.h; sourceTree = "<group>"; };
@@ -6631,6 +6633,7 @@
 		B0D617F996C9EE2A04C92CD3 /* OAWikiImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OAWikiImageHelper.h; path = Helpers/OAWikiImageHelper.h; sourceTree = "<group>"; };
 		B0D6189EC7D66546D536A0E6 /* OAGpxWptEditingHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OAGpxWptEditingHandler.mm; sourceTree = "<group>"; };
 		B0D61A1429F246314E2B7A6A /* OAButtonRightIconCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OAButtonRightIconCell.xib; path = Resources/Controllers/Cells/OAButtonRightIconCell.xib; sourceTree = "<group>"; };
+		B0D61A3E30BE9086E619FF17 /* OAWikipediaPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAWikipediaPlugin.h; sourceTree = "<group>"; };
 		B0D61A71FCB50975CB4FB88D /* OATitleSliderRoundCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OATitleSliderRoundCell.m; path = Controllers/Cells/OATitleSliderRoundCell.m; sourceTree = "<group>"; };
 		B0D61C17B82A2A45EA763869 /* OARearrangeCustomFiltersViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OARearrangeCustomFiltersViewController.mm; path = Sources/Controllers/2.0/OARearrangeCustomFiltersViewController.mm; sourceTree = "<group>"; };
 		B0D61C76BAE809E5E529DCEE /* OAWikiImageCard.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OAWikiImageCard.mm; sourceTree = "<group>"; };
@@ -11704,6 +11707,7 @@
 				8483D3B11FA5B9B900A985CF /* OAPlugin.mm */,
 				DAEF0809262830AF00DEDF9B /* OACustomPlugin.h */,
 				DAEF080A262830AF00DEDF9B /* OACustomPlugin.mm */,
+				B0D61208256FABF06780F21E /* Wikipedia */,
 			);
 			path = Plugins;
 			sourceTree = "<group>";
@@ -12636,6 +12640,15 @@
 			);
 			name = Location;
 			path = Resources/Icons/Location;
+			sourceTree = "<group>";
+		};
+		B0D61208256FABF06780F21E /* Wikipedia */ = {
+			isa = PBXGroup;
+			children = (
+				B0D6116D8E98444E86892434 /* OAWikipediaPlugin.mm */,
+				B0D61A3E30BE9086E619FF17 /* OAWikipediaPlugin.h */,
+			);
+			path = Wikipedia;
 			sourceTree = "<group>";
 		};
 		BB098CE81793F7FD00423944 = {
@@ -18333,6 +18346,7 @@
 				B0D6133423BFB5C0E7F8F223 /* OAWikiImageHelper.mm in Sources */,
 				B0D61DB052B44C085A799646 /* OAWikiImageCard.mm in Sources */,
 				B0D615DA8EFE25BED37A3A48 /* OAIPFSImageCard.mm in Sources */,
+				B0D617D7EC855E1492984383 /* OAWikipediaPlugin.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

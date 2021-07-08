@@ -13,6 +13,10 @@
 #import "OsmAndApp.h"
 #import "OAAppSettings.h"
 #import "OrderedDictionary.h"
+#import "OAPOIFiltersHelper.h"
+#import "OAWikipediaPlugin.h"
+#import "OAPlugin.h"
+#import "OAIAPHelper.h"
 
 #include <objc/runtime.h>
 
@@ -34,6 +38,8 @@
 #define kSlopeMinZoomKey @"slopeMinZoom"
 #define kSlopeMaxZoomKey @"slopeMaxZoom"
 #define kMapillaryKey @"mapillary"
+#define kWikipediaLanguagesKey @"wikipediaLanguages"
+#define kWikipediaGlobalKey @"wikipediaGlobal"
 
 @implementation OAAppData
 {
@@ -60,7 +66,9 @@
     OACommonInteger *_slopeMinZoomProfile;
     OACommonInteger *_slopeMaxZoomProfile;
     OACommonBoolean *_mapillaryProfile;
-    
+    OACommonBoolean *_wikipediaGlobalProfile;
+    OACommonStringList *_wikipediaLanguagesProfile;
+
     NSMapTable<NSString *, OACommonPreference *> *_registeredPreferences;
 }
 
@@ -178,6 +186,8 @@
     _slopeMinZoomProfile = [OACommonInteger withKey:kSlopeMinZoomKey defValue:3];
     _slopeMaxZoomProfile = [OACommonInteger withKey:kSlopeMaxZoomKey defValue:16];
     _mapillaryProfile = [OACommonBoolean withKey:kMapillaryKey defValue:NO];
+    _wikipediaGlobalProfile = [OACommonBoolean withKey:kWikipediaGlobalKey defValue:NO];
+    _wikipediaLanguagesProfile = [OACommonStringList withKey:kWikipediaLanguagesKey defValue:@[]];
 
     _registeredPreferences = [NSMapTable strongToStrongObjectsMapTable];
     [_registeredPreferences setObject:_overlayMapSourceProfile forKey:@"map_overlay_previous"];
@@ -193,6 +203,8 @@
     [_registeredPreferences setObject:_slopeMaxZoomProfile forKey:@"slope_max_zoom"];
     [_registeredPreferences setObject:_mapillaryProfile forKey:@"show_mapillary"];
     [_registeredPreferences setObject:_terrainTypeProfile forKey:@"terrain_mode"];
+    [_registeredPreferences setObject:_wikipediaGlobalProfile forKey:@"global_wikipedia_poi_enabled"];
+    [_registeredPreferences setObject:_wikipediaLanguagesProfile forKey:@"wikipedia_poi_enabled_languages"];
 }
 
 - (void) dealloc
@@ -339,6 +351,8 @@
 @synthesize terrainAlphaChangeObservable = _terrainAlphaChangeObservable;
 @synthesize mapLayerChangeObservable = _mapLayerChangeObservable;
 @synthesize mapillaryChangeObservable = _mapillaryChangeObservable;
+@synthesize wikipediaChangeObservable = _wikipediaChangeObservable;
+@synthesize wikipedia = _wikipedia;
 
 - (OAMapSource*) overlayMapSource
 {
@@ -633,6 +647,84 @@
     {
         [_mapillaryProfile set:mapillary];
         [_mapillaryChangeObservable notifyEventWithKey:self andValue:[NSNumber numberWithBool:self.mapillary]];
+    }
+}
+
+- (void)setWikipedia:(BOOL)wikipedia
+{
+    @synchronized (_lock)
+    {
+        if (![OAIAPHelper sharedInstance].wiki.isActive)
+            _wikipedia = NO;
+        else
+            _wikipedia = wikipedia;
+        OAWikipediaPlugin *plugin = (OAWikipediaPlugin *) [OAPlugin getPlugin:OAWikipediaPlugin.class];
+        [plugin toggleWikipediaPoi:_wikipedia];
+        [_wikipediaChangeObservable notifyEventWithKey:self andValue:@(_wikipedia)];
+    }
+}
+
+- (BOOL)getWikipediaAllLanguages
+{
+    @synchronized (_lock)
+    {
+        return _wikipediaGlobalProfile.get;
+    }
+}
+
+- (BOOL)getWikipediaAllLanguages:(OAApplicationMode *)mode
+{
+    @synchronized (_lock)
+    {
+        return [_wikipediaGlobalProfile get:mode];
+    }
+}
+
+- (void)setWikipediaAllLanguages:(BOOL)allLanguages
+{
+    @synchronized (_lock)
+    {
+        [_wikipediaGlobalProfile set:allLanguages];
+    }
+}
+
+- (void)setWikipediaAllLanguages:(BOOL)allLanguages mode:(OAApplicationMode *)mode
+{
+    @synchronized (_lock)
+    {
+        [_wikipediaGlobalProfile set:allLanguages mode:mode];
+    }
+}
+
+- (NSArray<NSString *> *)getWikipediaLanguages
+{
+    @synchronized (_lock)
+    {
+        return _wikipediaLanguagesProfile.get;
+    }
+}
+
+- (NSArray<NSString *> *)getWikipediaLanguages:(OAApplicationMode *)mode
+{
+    @synchronized (_lock)
+    {
+        return [_wikipediaLanguagesProfile get:mode];
+    }
+}
+
+- (void)setWikipediaLanguages:(NSArray<NSString *> *)languages
+{
+    @synchronized (_lock)
+    {
+        [_wikipediaLanguagesProfile set:languages];
+    }
+}
+
+- (void)setWikipediaLanguages:(NSArray<NSString *> *)languages mode:(OAApplicationMode *)mode
+{
+    @synchronized (_lock)
+    {
+        [_wikipediaLanguagesProfile set:languages mode:mode];
     }
 }
 
