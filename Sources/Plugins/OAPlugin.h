@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@class OAMapPanelViewController, OAMapInfoController, OAMapViewController, OAQuickActionType, OACustomPlugin, OAWorldRegion;
+@class OAMapPanelViewController, OAMapInfoController, OAMapViewController, OAQuickActionType, OACustomPlugin, OAWorldRegion, OAResourceItem, OAApplicationMode;
 
 @interface OAPlugin : NSObject
 
@@ -29,6 +29,8 @@
 - (NSString *) getVersion;
 
 - (NSArray<OAWorldRegion *> *) getDownloadMaps;
+- (NSArray<OAResourceItem *> *) getSuggestedMaps;
+- (NSArray<OAApplicationMode *> *) getAddedAppModes;
 
 - (BOOL) initPlugin;
 - (void) setActive:(BOOL)active;
